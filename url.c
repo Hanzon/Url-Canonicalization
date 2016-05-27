@@ -341,8 +341,8 @@ good:
 
 bad:
 	free(str1); free(begin_source);
-	if(dest)
-		free(dest);
+	if(begin_dest)
+		free(begin_dest);
 	return(NULL);
 }
 
@@ -445,6 +445,8 @@ extern char *url_Canonicalize(const char *src, long len, long *new_len)
 		new_len = &tmp;
 	
 	char *str3 = url_Normalize(src, len, new_len);
+	if(str3 == NULL)
+		return NULL;
 	// printf("%-16s = [%s]\n", "NORMALIZED", str3);
 	// printf("new_len = %ld\n", *new_len);	
 	char *str4 = url_Escape(str3, *new_len, new_len);
